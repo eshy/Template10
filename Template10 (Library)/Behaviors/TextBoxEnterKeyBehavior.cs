@@ -29,6 +29,7 @@ namespace Template10.Behaviors
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
             {
+                Text = AssociatedTextBox.Text;
                 Interaction.ExecuteActions(AssociatedObject, Actions, null);
                 e.Handled = true;
             }
@@ -49,5 +50,15 @@ namespace Template10.Behaviors
         public static readonly DependencyProperty ActionsProperty = 
             DependencyProperty.Register("Actions", typeof(ActionCollection), 
                 typeof(TextBoxEnterKeyBehavior), new PropertyMetadata(null));
+
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+        public static readonly DependencyProperty TextProperty = 
+            DependencyProperty.Register("Text", typeof(string), 
+                typeof(TextBoxEnterKeyBehavior), new PropertyMetadata(null));
+
     }
 }
